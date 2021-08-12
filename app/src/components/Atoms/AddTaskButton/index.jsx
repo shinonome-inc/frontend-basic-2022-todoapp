@@ -59,7 +59,7 @@ const StyledWrapper = styled.div`
 
 const StyledLabel = styled.div`
   color: ${COLOR.GREEN};
-  ${TEXT.M};
+  ${TEXT.S};
   margin-left: 10px;
   white-space: nowrap;
 `;

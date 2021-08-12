@@ -25,7 +25,7 @@ export default Input;
 const StyledInput = styled.input.attrs((props) => ({ ...props, size: "1" }))`
   background-color: ${COLOR.BLACK};
   color: ${COLOR.LIGHT_GRAY};
-  ${TEXT.M}
+  ${TEXT.S}
   border-radius: 2px;
   padding: 0 4px;
   border: none;
