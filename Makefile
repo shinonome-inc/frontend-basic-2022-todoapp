@@ -9,3 +9,7 @@ up:
 .PHONY: down
 down:
 	docker-compose down
+
+.PHONY: exec
+exec:
+	docker exec -it fb22-web /bin/sh
