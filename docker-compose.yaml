@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  web:
+    image: node:16-alpine
+    volumes:
+      - ./app:/app
+    ports:
+      - "0.0.0.0:6006:6006"
+      - "0.0.0.0:8080:8080"
+    entrypoint: "/bin/sh -c 'cd app && yarn install && yarn dev'"
