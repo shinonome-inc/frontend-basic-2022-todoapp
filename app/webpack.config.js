@@ -19,7 +19,24 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: { url: false },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: ["url-loader"],
+      },
     ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
   target: ["web", "es5"],
   devServer: {

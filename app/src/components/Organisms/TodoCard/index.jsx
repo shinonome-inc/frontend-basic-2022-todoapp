@@ -76,12 +76,11 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledTaskList = styled.div`
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-self: stretch;
 
-  & > *:not(:first-child) {
+  & > * {
     margin-top: 10px;
   }
 `;
