@@ -9,4 +9,4 @@ services:
     ports:
       - "0.0.0.0:6006:6006"
       - "0.0.0.0:8080:8080"
-    entrypoint: "/bin/sh -c 'cd app && yarn install && yarn sb'"
+    entrypoint: "/bin/sh -c 'cd app && yarn install && yarn dev'"
