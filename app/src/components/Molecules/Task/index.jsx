@@ -7,16 +7,17 @@ import EditButton from "../../Atoms/EditButton";
 import Input from "../../Atoms/Input";
 
 const Task = ({
-  onTaskNameChanged,
-  onTaskCompleted,
+  onTaskNameChange,
+  onTaskComplete,
+  defaultName = "",
   defaultIsEditing = false,
 }) => {
-  const [taskName, setTaskName] = useState("");
+  const [taskName, setTaskName] = useState(defaultName);
   const [isEditing, setIsEditing] = useState(defaultIsEditing);
 
   const onEditComplete = (value) => {
     setIsEditing(false);
-    onTaskNameChanged(value);
+    onTaskNameChange(value);
     setTaskName(value);
   };
 
@@ -27,7 +28,7 @@ const Task = ({
   return (
     <StyledWrapper>
       <StyledCheckboxWrapper>
-        <Checkbox onClick={onTaskCompleted} />
+        <Checkbox onClick={onTaskComplete} />
       </StyledCheckboxWrapper>
       {isEditing ? (
         <Input onEditComplete={onEditComplete} defaultValue={taskName} />

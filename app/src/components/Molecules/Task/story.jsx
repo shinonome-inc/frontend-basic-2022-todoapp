@@ -10,8 +10,8 @@ const Template = (args) => <Component {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  onTaskNameChanged: (value) => console.log("taskname changed: ", value),
-  onTaskCompleted: () => console.log("task completed"),
+  onTaskNameChange: (value) => console.log("taskname changed: ", value),
+  onTaskComplete: () => console.log("task completed"),
   defaultIsEditing: true,
 };
 Default.decorators = [
