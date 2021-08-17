@@ -6,7 +6,7 @@
   "author": "MoAI522",
   "license": "MIT",
   "scripts": {
-    "sb": "start-storybook -p 6006 -h 0.0.0.0",
+    "sb": "start-storybook -p 6006 -h 0.0.0.0 -s ./src",
     "dev": "webpack serve --open --mode development",
     "build": "webpack --mode production"
   },
