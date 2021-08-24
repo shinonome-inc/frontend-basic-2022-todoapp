@@ -9,16 +9,14 @@ import Input from "../../Atoms/Input";
 const Task = ({
   onTaskNameChange,
   onTaskComplete,
-  defaultName = "",
+  taskName = "",
   defaultIsEditing = false,
 }) => {
-  const [taskName, setTaskName] = useState(defaultName);
   const [isEditing, setIsEditing] = useState(defaultIsEditing);
 
   const onEditComplete = (value) => {
     setIsEditing(false);
     onTaskNameChange(value);
-    setTaskName(value);
   };
 
   const onEditButtonClick = () => {

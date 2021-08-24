@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useAlertHandlerContext } from "../../../contexts/alert_handler";
 import COLOR from "../../../variables/color";
 import AddTaskButton from "../../Atoms/AddTaskButton";
 import Task from "../../Molecules/Task";
 
 const TodoCard = () => {
   const [taskList, setTaskList] = useState([]);
+  const AlertHandlerContext = useAlertHandlerContext();
 
   const onAddTaskButtonClick = () => {
     const newTask = {
       name: "",
       state: "TODO",
-      isEditing: true,
+      initializing: true,
     };
     setTaskList(taskList.concat(newTask));
   };
@@ -25,13 +27,17 @@ const TodoCard = () => {
   };
 
   const onTaskNameChange = (value, index) => {
-    let newTaskList = taskList.map((task, idx) => {
-      if (idx == index) {
-        task.name = value;
-        task.isEditing = false;
-      }
-      return task;
-    });
+    let newTaskList = [...taskList];
+    if (value === "") {
+      newTaskList.splice(index, 1);
+      AlertHandlerContext.setAlert("タスクの名前が設定されていません。");
+    } else {
+      newTaskList.splice(index, 1, {
+        state: taskList[index].state,
+        name: value,
+        initializing: false,
+      });
+    }
     setTaskList(newTaskList);
   };
 
@@ -56,8 +62,8 @@ const TodoCard = () => {
                 key={index}
                 onTaskComplete={() => onTaskComplete(index)}
                 onTaskNameChange={(value) => onTaskNameChange(value, index)}
-                defaultName={task.name}
-                defaultIsEditing={task.isEditing}
+                taskName={task.name}
+                defaultIsEditing={task.initializing}
               />
             )
         )}
