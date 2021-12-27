@@ -55,18 +55,17 @@ const TodoCard = () => {
     <StyledWrapper>
       <AddTaskButton onClick={onAddTaskButtonClick} />
       <StyledTaskList>
-        {taskList.map(
-          (task, index) =>
-            task.state === "TODO" && (
-              <Task
-                key={index}
-                onTaskComplete={() => onTaskComplete(index)}
-                onTaskNameChange={(value) => onTaskNameChange(value, index)}
-                taskName={task.name}
-                defaultIsEditing={task.initializing}
-              />
-            )
-        )}
+        {taskList
+          .filter((task) => task.state === "TODO")
+          .map((task, index) => (
+            <Task
+              key={index}
+              onTaskComplete={() => onTaskComplete(index)}
+              onTaskNameChange={(value) => onTaskNameChange(value, index)}
+              taskName={task.name}
+              defaultIsEditing={task.initializing}
+            />
+          ))}
       </StyledTaskList>
     </StyledWrapper>
   );
