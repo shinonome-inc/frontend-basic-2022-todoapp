@@ -40,6 +40,7 @@ module.exports = {
   },
   target: ["web", "es5"],
   devServer: {
+    host: "0.0.0.0",
     contentBase: "./public",
   },
 };

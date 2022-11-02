@@ -1,10 +1,11 @@
+.PHONY: up
+up:
+	@make build
+	docker-compose up
+
 .PHONY: build
 build:
 	docker-compose build
-
-.PHONY: up
-up:
-	docker-compose up
 
 .PHONY: down
 down:
