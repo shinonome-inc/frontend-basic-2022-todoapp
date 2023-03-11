@@ -12,10 +12,3 @@ export const Default = Template.bind({});
 Default.args = {
   onEditComplete: (value) => console.log("edit completed: ", value),
 };
-Default.decorators = [
-  (Story) => (
-    <div style={{ width: "232px" }}>
-      <Story />
-    </div>
-  ),
-];
