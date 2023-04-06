@@ -3,7 +3,8 @@ name: Deploy Storybook
 on:
   push:
     branches:
-      - "main"
+      - main
+      - feature/deploy-storybook
   
 jobs:
   build-and-deploy:
