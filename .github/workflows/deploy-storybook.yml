@@ -10,6 +10,13 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: "todoapp"
+          ref: "main"
+          persist-credentials: false
+
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
@@ -28,9 +35,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
-        working-directory: ./app
+        working-directory: ./todoapp/app
       - run: yarn build-storybook
-        working-directory: ./app
+        working-directory: ./todoapp/app
       
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,8 +52,8 @@ jobs:
       - name: Copy built storybook files
         shell: bash
         run: |
-          rm -r storybook-repo/*
-          cp -r app/storybook-static/* storybook-repo
+          rm -r ./storybook-repo/*
+          cp -r ./todoapp/app/storybook-static/* storybook-repo
       - name: Commit and push
         shell: bash
         working-directory: storybook-repo
