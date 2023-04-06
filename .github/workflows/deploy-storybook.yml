@@ -1,0 +1,57 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - "main"
+  
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - run: yarn install --frozen-lockfile
+        working-directory: ./app
+      - run: yarn build-storybook
+        working-directory: ./app
+      
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: "storybook-repo"
+          ref: "main"
+          repository: "shinonome-inc/frontend-basic-todoapp-storybook"
+          token: ${{ secrets.BOT_TOKEN }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Copy built storybook files
+        shell: bash
+        run: |
+          rm -r storybook-repo/*
+          cp -r app/storybook-static/* storybook-repo
+      - name: Commit and push
+        shell: bash
+        working-directory: storybook-repo
+        run: |
+          git add .
+          git config --global user.name "storybook-deployer-kun [bot]"
+          git config --global user.email "${{ secrets.BOT_EMAIL }}"
+          git commit -m "deploy storybook from ${{ github.workflow }}-${{ github.ref }}"
+          git push origin main
