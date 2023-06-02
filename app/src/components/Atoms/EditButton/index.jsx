@@ -6,23 +6,11 @@ import COLOR from "../../../variables/color";
 const EditButton = ({ onClick }) => {
   return (
     <StyledButton onClick={onClick}>
-      <StyledShadow />
       <img src={pencil} />
     </StyledButton>
   );
 };
 export default EditButton;
-
-const StyledShadow = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: ${COLOR.LIGHT_GRAY};
-  transition: 0.2s;
-`;
 
 const StyledButton = styled.button`
   border: none;
@@ -33,10 +21,9 @@ const StyledButton = styled.button`
   height: 20px;
   background: none;
   padding: 0;
-
-  & > ${StyledShadow} {
-    opacity: 0;
-  }
+  border-radius: 50%;
+  background-color: ${COLOR.LIGHT_GRAY_TRANSPARENT};
+  transition: 0.2s;
 
   & > img {
     width: 100%;
@@ -44,8 +31,6 @@ const StyledButton = styled.button`
   }
 
   &:hover {
-    & > ${StyledShadow} {
-      opacity: 0.2;
-    }
+    background-color: ${COLOR.LIGHT_GRAY_TRANSLUCENT};
   }
 `;
