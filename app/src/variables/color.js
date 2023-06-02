@@ -6,6 +6,8 @@ const COLOR = {
   LIGHT_GRAY_TRANSPARENT: "rgba(0,0,0,0)",
   WHITE: "#FFFFFF",
   GREEN: "#46A381",
+  GREEN_TRANSLUCENT: "rgba(70,163,129,0.2)",
+  GREEN_TRANSPARENT: "rgba(0,0,0,0)",
   RED: "#F0947F",
 };
 export default COLOR;
