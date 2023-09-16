@@ -20,6 +20,16 @@ Default.args = {};
 Default.decorators = [
   (Story) => (
     <div>
+      <Story />
+    </div>
+  ),
+];
+
+export const WithAlert = Template.bind({});
+WithAlert.args = {};
+WithAlert.decorators = [
+  (Story) => (
+    <div>
       <AlertHandlerProvider>
         <AlertManager />
         <Story />

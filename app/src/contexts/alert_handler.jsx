@@ -36,3 +36,18 @@ export const AlertHandlerProvider = ({ children }) => {
 };
 
 export const useAlertHandlerContext = () => useContext(AlertHandlerContext);
+
+export const MockAlertHandlerProvider = ({ children }) => {
+  return (
+    <AlertHandlerContext.Provider
+      value={{
+        visible: false,
+        errorText: "",
+        setAlert: () => {},
+        closeAlert: () => {},
+      }}
+    >
+      {children}
+    </AlertHandlerContext.Provider>
+  );
+};
