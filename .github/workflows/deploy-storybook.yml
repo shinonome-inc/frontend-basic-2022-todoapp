@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - feature/deploy-storybook
-  
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-22.04
@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "18.12.0"
 
       - name: Get yarn cache
         id: yarn-cache
@@ -38,7 +38,7 @@ jobs:
         working-directory: ./todoapp/app
       - run: yarn build-storybook
         working-directory: ./todoapp/app
-      
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
