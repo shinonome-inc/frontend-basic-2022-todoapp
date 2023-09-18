@@ -15,10 +15,4 @@ Default.args = {
   taskName: "taskname",
   defaultIsEditing: true,
 };
-Default.decorators = [
-  (Story) => (
-    <div style={{ width: "256px" }}>
-      <Story />
-    </div>
-  ),
-];
+Default.decorators = [(Story) => <Story />];
