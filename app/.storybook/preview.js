@@ -8,3 +8,9 @@ export const decorators = [
     </MockAlertHandlerProvider>
   ),
 ];
+
+export const parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+};
