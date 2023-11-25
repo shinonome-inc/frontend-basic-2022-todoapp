@@ -7,20 +7,26 @@ const Input = ({ onEditComplete, defaultValue = "" }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    ref.current.value = defaultValue;
     ref.current.focus();
-
-    const onFocusOut = () => onEditComplete(ref.current.value);
-
-    ref.current.addEventListener("focusout", onFocusOut);
-    ref.current.addEventListener("keypress", (event) => {
-      if (event.key !== "Enter") return;
-      ref.current.removeEventListener("focusout", onFocusOut);
-      onEditComplete(ref.current.value);
-    });
   }, []);
 
-  return <StyledInput ref={ref} />;
+  const handleBlur = () => {
+    onEditComplete(ref.current.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key !== "Enter") return;
+    onEditComplete(ref.current.value);
+  };
+
+  return (
+    <StyledInput
+      defaultValue={defaultValue}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+      ref={ref}
+    />
+  );
 };
 export default Input;
 
