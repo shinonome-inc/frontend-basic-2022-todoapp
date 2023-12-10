@@ -21,6 +21,7 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  gap: 20px;
 
   @media (min-width: ${BREAKPOINT.MEDIUM}) {
     padding-top: 60px;
@@ -29,12 +30,10 @@ const StyledWrapper = styled.div`
 
 const StyledTodoCardWrapper = styled.div`
   width: 100%;
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
 
   @media (min-width: ${BREAKPOINT.MEDIUM}) {
     max-width: 500px;
-    margin-top: 20px;
   }
 `;
